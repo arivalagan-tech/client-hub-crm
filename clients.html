@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Client Hub - Clients</title>
+    <link rel="icon" href="img/user-data.png" />
+    <link rel="stylesheet" href="clients.css" />
+  </head>
+  <body style="overflow: hidden">
+    <div class="clients-main-container">
+      <div class="client-profile-container">
+        <div class="client-header">
+          <div class="clients-nav">
+            <input type="text" id="searchBox" placeholder="Search names..." autofocus />
+            <img class="searchBoxImg" src="img/icons8-search-client-48.png" alt="" />
+          </div>
+          <h3 class="clients-title">Clients</h3>
+          <a href="index.html" style="text-decoration: none">
+            <button class="button" style="vertical-align: middle">
+              <span>Add Client</span>
+            </button>
+          </a>
+        </div>
+        <div id="clientsList" class="clients-container"></div>
+      </div>
+      <div id="clientDetails-container" class="clientDetails-main"></div>
+    </div>
+    <!-- Popup overlay -->
+    <div id="popupOverlay" class="popup-overlay" aria-hidden="true"></div>
+    <!-- Notes Popup -->
+    <div id="popupForm" class="popup-form" role="dialog" aria-hidden="true" aria-modal="true">
+      <h3 id="popupTitle">Add Note</h3>
+      <form id="popupGenericForm">
+        <label for="popupNoteTitle">Title</label>
+        <input id="popupNoteTitle" type="text" placeholder="Purpose of meeting (optional)" />
+        <label for="popupNoteText">Note</label>
+        <textarea id="popupNoteText" rows="5" placeholder="Enter notes..." required></textarea>
+        <div class="popup-actions">
+          <button type="submit" id="popupSubmit" class="popup-btn">Save</button>
+          <button type="button" id="popupCancel" class="popup-btn secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <!-- Call Popup -->
+    <div id="popupCallForm" class="popup-form" role="dialog" aria-hidden="true" aria-modal="true">
+      <h3 id="popupCallTitle">Schedule Call</h3>
+      <form id="popupCallGenericForm">
+        <label for="popupCallDate">Date</label>
+        <input id="popupCallDate" type="date" required />
+        <label for="popupCallTime">Time</label>
+        <input id="popupCallTime" type="time" required />
+        <label for="popupCallAgenda">Agenda</label>
+        <textarea id="popupCallAgenda" rows="3" placeholder="Purpose of call..." required></textarea>
+        <!--  Priority field for call urgency -->
+        <label for="popupCallPriority">Priority</label>
+        <select id="popupCallPriority" required>
+          <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
+        </select>
+        <div class="popup-actions">
+          <button type="submit" id="popupCallSubmit" class="popup-btn">Save</button>
+          <button type="button" id="popupCallCancel" class="popup-btn secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <script src="clients.js"></script>
+  </body>
+</html>

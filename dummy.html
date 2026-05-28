@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup Demo</title>
+
+  <style>
+    /* Overlay */
+    .popup-overlay {
+      position: fixed; top:0; left:0; width:100vw; height:100vh;
+      background: rgba(0,0,0,0.45);
+      display: none; z-index: 1200;
+      animation: fadeIn .18s ease;
+    }
+    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
+
+    /* Popup box */
+    .popup-form {
+      position: fixed;
+      top: 40%; left: 50%;
+      transform: translate(-50%,-50%) scale(.98);
+      background: #fff;
+      border-radius: 12px;
+      width: 540px; max-width: 92%;
+      padding: 18px;
+      box-shadow: 0 18px 48px rgba(15,23,42,0.12);
+      display: none;
+      z-index: 1300;
+      animation: popIn .22s ease forwards;
+    }
+    @keyframes popIn {
+      from {opacity:0; transform: translate(-50%,-50%) scale(.96)}
+      to {opacity:1; transform: translate(-50%,-50%) scale(1)}
+    }
+
+    .popup-form label { display:block; margin-top:8px; font-size:13px; color:#374151; }
+    .popup-form input, .popup-form textarea {
+      width: 96%; padding:10px; border-radius:8px; border:1px solid #e6e7eb; margin-top:6px;
+      font-size:14px;
+    }
+
+    .popup-actions { margin-top:14px; display:flex; gap:8px; justify-content:flex-end; }
+    .popup-btn { padding:8px 14px; border-radius:8px; border:none; cursor:pointer; background:#4f46e5; color:white; }
+    .popup-btn.secondary { background:#e6e7eb; color:#111827; }
+
+    .hidden { display:none !important; }
+
+    /* Demo buttons */
+    .demo-buttons { margin: 20px; display: flex; gap: 10px; }
+    .demo-buttons button {
+      padding: 10px 14px;
+      border: none; border-radius: 8px;
+      background: #2563eb; color: white; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Demo buttons to open popup -->
+  <div class="demo-buttons">
+    <button id="openAddNoteBtn">+ Add Note</button>
+    <button id="openScheduleCallBtn">+ Schedule Call</button>
+  </div>
+
+  <!-- Popup overlay -->
+  <div id="popupOverlay" class="popup-overlay" aria-hidden="true"></div>
+
+  <!-- Popup form -->
+  <div id="popupForm" class="popup-form" role="dialog" aria-hidden="true" aria-modal="true">
+    <h3 id="popupTitle">Popup</h3>
+
+    <form id="popupGenericForm">
+      <!-- Note fields -->
+      <div id="popupFieldNotes" class="popup-fields" style="width: 541px;">
+        <label for="popupNoteTitle">Title</label>
+        <input id="popupNoteTitle" type="text" placeholder="Meeting title (optional)" />
+
+        <label for="popupNoteText">Note</label>
+        <textarea id="popupNoteText" rows="5" placeholder="Enter notes..." required></textarea>
+      </div>
+
+      <!-- Call fields -->
+      <div id="popupFieldCall" class="popup-fields hidden">
+        <label for="popupCallDate">Date</label>
+        <input id="popupCallDate" type="date" />
+
+        <label for="popupCallTime">Time</label>
+        <input id="popupCallTime" type="time" />
+
+        <label for="popupCallAgenda">Agenda</label>
+        <input id="popupCallAgenda" type="text" placeholder="Call agenda" />
+      </div>
+
+      <!-- Actions -->
+      <div class="popup-actions">
+        <button type="submit" id="popupSubmit" class="popup-btn">Save</button>
+        <button type="button" id="popupCancel" class="popup-btn secondary">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Open popup with type: "note" or "call"
+    function openPopup(type, onSubmitCallback) {
+      const overlay = document.getElementById("popupOverlay");
+      const popup = document.getElementById("popupForm");
+      const title = document.getElementById("popupTitle");
+      const popupFieldsNotes = document.getElementById("popupFieldNotes");
+      const popupFieldsCall = document.getElementById("popupFieldCall");
+      const popupGenericForm = document.getElementById("popupGenericForm");
+
+      // Show popup
+      overlay.style.display = "block";
+      popup.style.display = "block";
+      overlay.setAttribute("aria-hidden", "false");
+      popup.setAttribute("aria-hidden", "false");
+
+      // Reset + toggle fields
+      if (type === "note") {
+        title.textContent = "Add Note";
+        popupFieldsNotes.classList.remove("hidden");
+        popupFieldsCall.classList.add("hidden");
+        document.getElementById("popupNoteText").value = "";
+        document.getElementById("popupNoteTitle").value = "";
+      } else {
+        title.textContent = "Schedule Call";
+        popupFieldsNotes.classList.add("hidden");
+        popupFieldsCall.classList.remove("hidden");
+        document.getElementById("popupCallDate").value = "";
+        document.getElementById("popupCallTime").value = "";
+        document.getElementById("popupCallAgenda").value = "";
+      }
+
+      // Close popup
+      const closePopup = () => {
+        overlay.style.display = "none";
+        popup.style.display = "none";
+        overlay.setAttribute("aria-hidden", "true");
+        popup.setAttribute("aria-hidden", "true");
+        popupGenericForm.removeEventListener("submit", submitHandler);
+      };
+      document.getElementById("popupCancel").onclick = closePopup;
+      overlay.onclick = closePopup;
+
+      // Handle submit
+      const submitHandler = function (e) {
+        e.preventDefault();
+        let data = {};
+        if (type === "note") {
+          data = {
+            type: "note",
+            title: document.getElementById("popupNoteTitle").value.trim() || "Note",
+            text: document.getElementById("popupNoteText").value.trim(),
+            when: new Date().toLocaleString()
+          };
+          if (!data.text) return alert("Please enter a note.");
+        } else {
+          data = {
+            type: "call",
+            date: document.getElementById("popupCallDate").value,
+            time: document.getElementById("popupCallTime").value,
+            agenda: document.getElementById("popupCallAgenda").value.trim() || "Call"
+          };
+          if (!data.date || !data.time) return alert("Please select date and time.");
+        }
+
+        if (typeof onSubmitCallback === "function") {
+          onSubmitCallback(data); // send data back
+        }
+        closePopup();
+      };
+
+      popupGenericForm.addEventListener("submit", submitHandler);
+    }
+
+    // Example: Open popup
+    document.getElementById("openAddNoteBtn").onclick = () => {
+      openPopup("note", (data) => {
+        console.log("Note saved:", data);
+      });
+    };
+
+    document.getElementById("openScheduleCallBtn").onclick = () => {
+      openPopup("call", (data) => {
+        console.log("Call saved:", data);
+      });
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Hub CRM</title>
+  <link rel="icon" href="img/user.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="img/icons8-workflow-50.png" alt="icon" height="30px" width="30px">
+      <span class="brand-name">Client Hub</span>
+    </div>
+    <nav class="navbar-right">
+      <ul class="nav-links">
+        <li>Dashboard</li>
+        <a href="clients.html" style="text-decoration: none;"> <li class="Clients-style">Clients</li> </a>
+        <li>Reports</li>
+        <li>Settings</li>
+      </ul>
+      <img src="img/client profile.png" alt="icon" height="50px" width="50px">
+    </nav>
+  </header>
+  <!-- Main Form -->
+  <main class="form-container">
+    <h2>Add New Client</h2>
+    <form name="addNewClient" class="client-form">
+      <label for="name">Client Name</label>
+      <input type="text" name="fullName" id="name" placeholder="Enter client's full name" required />
+      <label for="tag">Client Tag</label>
+      <select name="clientTag" id="tag" class="form-select">
+        <option value="Select">Select</option>
+        <option value="Elite">Elite</option>
+        <option value="Premium">Premium</option>
+        <option value="Deluxe">Deluxe</option>
+        <option value="Basic">Basic</option>
+      </select>
+      <label for="status">Client Status</label>
+      <select name="clientStatus" id="Status" class="form-select">
+        <option value="Select">Select</option>
+        <option value="Available">Available</option>
+        <option value="Busy">Busy</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+      <label for="spent-time">Spent Time</label>
+      <input type="text" id="spent-time" name="spent-time" placeholder="e.g: 2 hours">
+      <label for="company">Company</label>
+      <input name="Company" type="text" id="company" placeholder="Enter client's company name" required/>
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" placeholder="Enter your address"></textarea>
+      <label for="email">Email</label>
+      <input name="email" type="email" id="email" placeholder="Enter client's email address" required/>
+      <label for="phone">Phone Number</label>
+      <input name="phoneNumber" type="text" id="phone" placeholder="Enter client's phone number" required/>
+      <label for="available-time">Available Time</label>
+      <input type="text" id="available-time" name="available-time" placeholder="e.g: Weekdays, 9 AM - 5 PM">
+      <label for="language">Preferred Language</label>
+      <select name="preferredLanguage" id="Language" class="form-select">
+        <option value="Select">Select</option>
+        <option value="english">English</option>
+        <option value="Tamil">Tamil</option>
+        <option value="Malayalam">Malayalam</option>
+        <option value="Kannada">Kannada</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Telugu">Telugu</option>
+      </select>
+      <div class="date-time-container-main">
+        <label for="nextCall">Next Call (Date - Time)</label>
+        <div class="date-time-container">
+          <div class="field">
+            <label for="date" style="font-size: 15px; font-weight: 500;">Date</label>
+            <input type="date" id="date" name="date">
+          </div>
+          <div class="field">
+            <label for="time" style="font-size: 15px; font-weight: 500;">Time</label>
+            <input type="time" id="time" name="time">
+          </div>
+          <div class="field">
+            <label for="agenda" style="font-size: 15px; font-weight: 500;">Agenda</label>
+            <textarea style="width: 138%;" name="call-agenda" id="agenda" rows="2" placeholder="Purpose of Next-Call" required></textarea>
+          </div>
+        </div>
+      </div>
+      
+      <label for="notes">Initial Notes</label>
+      <textarea name="new-notes" id="notes" rows="4" placeholder="Enter initial notes..." required></textarea>
+      <button type="submit" class="save-btn" onclick="saveForm(event)">Save</button>
+    </form>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>
