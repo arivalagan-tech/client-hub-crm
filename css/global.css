@@ -196,6 +196,11 @@ body {
   margin-top: 8px;
 }
 
+.date-time-container-main > label {
+  margin-bottom: 0;
+  display: block;
+}
+
 .date-time-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -207,6 +212,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.date-time-container .field label {
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .date-time-container .field:last-child {

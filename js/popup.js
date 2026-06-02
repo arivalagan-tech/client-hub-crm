@@ -45,6 +45,17 @@ export class SaaSPopup {
     // Add keyboard hook for ESC and focus trapping
     document.addEventListener("keydown", this.handleKeyDown);
 
+    // Reset any form inside the modal upon opening to clear previous values
+    const form = this.modal.querySelector("form");
+    if (form) {
+      form.reset();
+      // Ensure select priority field keeps default value if present
+      const prioritySelect = form.querySelector("#popupCallPriority");
+      if (prioritySelect) {
+        prioritySelect.value = "Medium";
+      }
+    }
+
     // Auto-focus on first interactive element (usually first input or textarea)
     setTimeout(() => {
       const firstInput = this.modal.querySelector("input, textarea, select, button");

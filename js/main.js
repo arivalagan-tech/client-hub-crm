@@ -37,6 +37,25 @@ function handleFormSubmit(event) {
   const agendaText = document.getElementById("agenda").value.trim();
   const notesText = document.getElementById("notes").value.trim();
 
+  // Validate required fields
+  const validationErrors = [];
+  if (!name) validationErrors.push("Client Name is required.");
+  if (!company) validationErrors.push("Company Name is required.");
+  if (!email) {
+    validationErrors.push("Email Address is required.");
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      validationErrors.push("Please enter a valid email address.");
+    }
+  }
+  if (!phone) validationErrors.push("Phone Number is required.");
+
+  if (validationErrors.length > 0) {
+    alert("Validation Failed:\n\n" + validationErrors.join("\n"));
+    return; // Keep user on page, prevent save
+  }
+
   // Create arrays for notes and calls
   const notesArray = [];
   if (notesText) {
