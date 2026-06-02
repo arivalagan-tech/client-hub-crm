@@ -1,0 +1,158 @@
+/**
+ * Client Hub CRM - Responsive Media Queries
+ * Supports viewports: 320px, 375px, 425px, 768px, 1024px, 1440px, 1920px+
+ */
+
+/* ==========================================================================
+   Mobile-First Breakpoint: Phones (max-width: 767px)
+   ========================================================================== */
+@media (max-width: 767px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .nav-links li, .nav-links a {
+    font-size: 13px;
+    padding: 4px 8px;
+  }
+
+  .brand-name {
+    display: none; /* Hide brand name text on ultra-small screens to fit nav links */
+  }
+
+  /* Form Container (index.html) */
+  .form-container {
+    margin: 16px auto;
+    padding: 20px;
+    border-radius: var(--radius-md);
+  }
+
+  .date-time-container {
+    grid-template-columns: 1fr;
+  }
+
+  .date-time-container .field:last-child {
+    grid-column: span 1;
+  }
+
+  .save-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Dual Pane Dashboard (clients.html) */
+  .clients-main-container {
+    position: relative;
+    height: calc(100vh - 66px);
+  }
+
+  /* Slide panes out of view on mobile unless active */
+  .client-profile-container {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 100%;
+    border-right: none;
+    transition: transform var(--transition-normal);
+  }
+
+  .clientDetails-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+    background-color: var(--bg-app);
+  }
+
+  /* Mobile Active Details View State */
+  .clients-main-container.show-details .client-profile-container {
+    transform: translateX(-100%);
+  }
+
+  .clients-main-container.show-details .clientDetails-main {
+    transform: translateX(0);
+  }
+
+  /* Show back button in mobile detail header */
+  .back-btn {
+    display: block !important;
+  }
+
+  .clientDetails {
+    padding: 20px;
+  }
+
+  .client-detail-backBtn h2 {
+    font-size: 20px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .nextCall-card-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Tablet Breakpoint (min-width: 768px) and (max-width: 1023px)
+   ========================================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .client-profile-container {
+    width: 320px;
+    min-width: 320px;
+  }
+
+  .clientDetails {
+    padding: 24px;
+  }
+
+  .nextCall-card-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-name {
+    font-size: 17px;
+  }
+}
+
+/* ==========================================================================
+   Desktop / Large Screen Optimization (min-width: 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .clients-main-container {
+    height: calc(100vh - 72px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .clientDetails {
+    max-width: 1100px;
+    padding: 48px;
+  }
+
+  .client-profile-container {
+    width: 420px;
+    min-width: 420px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .clientDetails {
+    max-width: 1400px;
+  }
+
+  .client-profile-container {
+    width: 460px;
+    min-width: 460px;
+  }
+}

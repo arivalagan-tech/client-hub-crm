@@ -1,198 +1,81 @@
-# 🚀 Client Hub CRM (SaaS)
+# 🚀 Client Hub CRM (SaaS Refactored)
 
-A modern SaaS-based Client Relationship Management (CRM) platform designed to streamline client interactions, sales workflows, meeting management, and support operations through a responsive and user-friendly dashboard experience.
+A modern, high-fidelity SaaS-based Client Relationship Management (CRM) platform designed to streamline client interactions, sales workflows, meeting logs, and deal tracking through a highly responsive, pure HTML/CSS/Vanilla JavaScript front-end. 
 
----
-
-## 🌐 Live Demo
-
-🔗 https://client-hub-crm-six.vercel.app/
+Built using modular architectural patterns and native APIs to deliver a recruiters' choice portfolio application.
 
 ---
 
-## 💻 GitHub Repository
-
-🔗 https://github.com/arivalagan-tech/client-hub-crm
-
----
-
-## 📋 Project Overview
-
-Client Hub CRM is a centralized client management solution built to help businesses organize customer relationships, track sales activities, manage meetings, and monitor support interactions from a single dashboard.
-
-The application focuses on improving operational efficiency through an intuitive user experience, reusable components, responsive layouts, and scalable architecture suitable for future SaaS expansion.
+## 🌐 Live Demo & Repository
+- **GitHub Repository**: [arivalagan-tech/client-hub-crm](https://github.com/arivalagan-tech/client-hub-crm)
+- **Tech Stack**: Pure HTML5, Vanilla CSS3 (Custom Variables), Native ES6 JavaScript, LocalStorage API.
 
 ---
 
-## ✨ Key Features
+## 📁 Refactored Project Structure
 
-### 👥 Client Management
-
-* Client profile management
-* Customer information tracking
-* Centralized client records
-* Organized client database
-
-### 📊 CRM Dashboard
-
-* Real-time dashboard interface
-* Business activity overview
-* Responsive dashboard layout
-* Modern UI/UX experience
-
-### ⚙️ CRUD Operations
-
-* Create client records
-* Read client information
-* Update client details
-* Delete client records
-
-### 📅 Meeting & Activity Tracking
-
-* Meeting management workflows
-* Activity monitoring
-* Client interaction tracking
-* Workflow organization
-
-### 🔐 Authentication & Security
-
-* User authentication workflows
-* Protected application access
-* Secure user experience
-
-### 🎨 User Experience
-
-* Responsive design
-* Mobile-friendly interface
-* Reusable modal components
-* Split-screen dashboard layout
-* SEO-friendly architecture
-
----
-
-## 🛠️ Tech Stack
-
-| Category         | Technologies                           |
-| ---------------- | -------------------------------------- |
-| Frontend         | HTML5, CSS3, JavaScript                |
-| UI/UX            | Responsive Design, Modern Dashboard UI |
-| Backend          | Node.js, Express.js                    |
-| Database         | MongoDB Atlas                          |
-| API              | REST APIs                              |
-| Version Control  | Git, GitHub                            |
-| Deployment       | Vercel                                 |
-| Future Migration | React.js, MERN Stack                   |
-
----
-
-## 📁 Project Structure
+This project has been transformed into a production-grade, highly structured SaaS layout:
 
 ```text
 client-hub-crm/
 │
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── assets/
-│   ├── styles/
-│   └── utils/
+├── assets/
+│   └── images/          # Professional brand, workflow, and user avatars
 │
-├── package.json
-├── README.md
-└── LICENSE
+├── css/
+│   ├── global.css       # Design tokens, variables, typography, resets, navbar & forms
+│   ├── clients.css      # Dual-pane directory and detailed contact sheets
+│   ├── popup.css        # Unified glassmorphic accessibility modal styling
+│   └── responsive.css   # Mobile-first breakpoints (320px up to 1920px+)
+│
+├── data/
+│   └── client.json      # Mock client schema for automatic database seeding
+│
+├── js/
+│   ├── main.js          # index.html controller (validation & client onboarding)
+│   ├── clients.js       # clients.html controller (search, listing, call scheduler)
+│   ├── popup.js         # Accessible modular popup class (ESC close, overlay close, focus trapping)
+│   ├── storage.js       # LocalStorage CRUD, key migration, and seeding engine
+│   └── utils.js         # HTML sanitization (XSS protection) & time/date formatters
+│
+├── index.html           # New Client Onboarding Interface
+├── clients.html         # Live CRM Dual-Pane Dashboard Sheet
+└── README.md
 ```
 
 ---
 
-## 🚀 Core Modules
+## ✨ Production-Ready SaaS Features
 
-### Dashboard
+### 👥 Dual-Pane Client Dashboard
+- **Left Panel List Directory**: Fast reactive searching by name, tag category pills, and real-time status badges (Available, Busy, Inactive).
+- **Right Panel Sheet**: Deep profile sheet showing overview data, contact particulars, communication language preferences, budget progress trackers, meeting history, and interaction schedulers.
 
-Provides a centralized overview of business activities and client interactions.
+### 🔐 Robust Storage Layer (`js/storage.js`)
+- **Key Migration**: Automatically detects and migrates legacy `"myArray"` databases to a professional `"client_hub_crm_clients"` key safely, keeping user data intact.
+- **Seeding Engine**: Proactively fetches `data/client.json` and seeds mock profiles upon initial startup so the dashboard immediately presents a filled ecosystem.
 
-### Client Profiles
+### 🛡️ Secure Utilities (`js/utils.js`)
+- **XSS Protection**: Uses native HTML character encoders to safely render user strings, preventing code injection attacks.
+- **AM/PM Time Conversions**: Polished 24-hour inputs into user-friendly AM/PM timestamps.
 
-Manage client information and maintain structured customer records.
+### ♿ Unified Accessible Popups (`js/popup.js` & `css/popup.css`)
+- **Escape Close Key**: Closes open popups instantly when user presses the `ESC` key.
+- **Backdrop Overlay Click Close**: Closes dialogs seamlessly when clicking outside modal contents.
+- **Focus Trapping**: Keeps keyboard focus trapped inside interactive elements of the modal, satisfying ARIA 1.1 modal accessibility regulations.
 
-### Meetings
-
-Track and organize client meetings and communication history.
-
-### Activities
-
-Monitor sales activities, follow-ups, and operational workflows.
-
-### Authentication
-
-Secure user access and session management.
-
----
-
-## 📈 Business Benefits
-
-* Improved client relationship management
-* Organized customer data
-* Better workflow visibility
-* Enhanced productivity
-* Scalable SaaS-ready architecture
-* Centralized business operations
+### 📱 100% Mobile-First Responsive Breakpoints
+Optimized to look professional, with zero horizontal scrollbars, across all standard viewports:
+- **Phone (320px, 375px, 425px)**: Native slide-out dashboard panes with smooth transform transitions.
+- **Tablet (768px)**: Collapsed sidebar grids with centered panels.
+- **Desktop (1024px, 1440px, 1920px+)**: Dual-pane grid layout.
 
 ---
 
-## 🔮 Future Enhancements
+## ⚙️ Quick Start
 
-* ☁️ AWS Cloud Deployment
-* 🏢 Multi-Tenant SaaS Architecture
-* 🤖 AI-Powered Insights & Recommendations
-* 📊 Advanced Analytics Dashboard
-* 🔄 Full MERN Stack Migration
-* 📱 Progressive Web App (PWA)
-* 📧 Email & Notification System
-* 📈 Sales Performance Tracking
-
----
-
-## ⚙️ Installation
-
-### Clone Repository
+No compilers or build steps required. Simply serve the workspace using any static HTTP server or open directly in your browser.
 
 ```bash
-git clone https://github.com/arivalagan-tech/client-hub-crm.git
+# Serve index.html or clients.html via local web server (e.g. VS Code Live Server)
 ```
-
-### Navigate to Project
-
-```bash
-cd client-hub-crm
-```
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Run Development Server
-
-```bash
-npm run dev
-```
-
----
-
-## 🚀 Deployment
-
-This project is deployed on Vercel with automated deployment workflows.
-
-```text
-Code Changes
-      ↓
-GitHub Repository
-      ↓
-Vercel CI/CD
-      ↓
-Automatic Deployment 🚀
-```
-
----

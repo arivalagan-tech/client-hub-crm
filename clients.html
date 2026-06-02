@@ -1,71 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Client Hub - Clients</title>
-    <link rel="icon" href="img/user-data.png" />
-    <link rel="stylesheet" href="clients.css" />
-  </head>
-  <body style="overflow: hidden">
-    <div class="clients-main-container">
-      <div class="client-profile-container">
-        <div class="client-header">
-          <div class="clients-nav">
-            <input type="text" id="searchBox" placeholder="Search names..." autofocus />
-            <img class="searchBoxImg" src="img/icons8-search-client-48.png" alt="" />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Client Hub CRM - Detailed dashboard interface containing client history, opportunity management, meeting logging, and interaction schedulers." />
+  <title>Client Hub - Clients Dashboard</title>
+  <link rel="icon" href="assets/images/user-data.png" />
+  
+  <!-- Premium External Stylesheet Modules -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/clients.css" />
+  <link rel="stylesheet" href="css/popup.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="assets/images/icons8-workflow-50.png" alt="Client Hub Workflow Icon" height="30" width="30">
+      <span class="brand-name">Client Hub</span>
+    </div>
+    <nav class="navbar-right" aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="index.html">Add Client</a></li>
+        <li><a href="clients.html" class="active">Clients</a></li>
+      </ul>
+      <img src="assets/images/client profile.png" class="avatar-img" alt="User Profile Image">
+    </nav>
+  </header>
+
+  <!-- Dual Pane Client Dashboard Container -->
+  <div class="clients-main-container">
+    
+    <!-- Left Pane: Client Search & Cards List -->
+    <aside class="client-profile-container" aria-label="Clients List Directory">
+      <div class="client-header">
+        <div class="clients-nav">
+          <input type="text" id="searchBox" placeholder="Search clients..." autofocus aria-label="Search clients by name" />
+          <img class="searchBoxImg" src="assets/images/icons8-search-client-48.png" alt="" aria-hidden="true" />
+        </div>
+        <div class="client-header-title-row">
           <h3 class="clients-title">Clients</h3>
-          <a href="index.html" style="text-decoration: none">
-            <button class="button" style="vertical-align: middle">
-              <span>Add Client</span>
-            </button>
+          <a href="index.html" class="button" aria-label="Navigate to add new client form">
+            <span>+ Add Client</span>
           </a>
         </div>
-        <div id="clientsList" class="clients-container"></div>
       </div>
-      <div id="clientDetails-container" class="clientDetails-main"></div>
-    </div>
-    <!-- Popup overlay -->
-    <div id="popupOverlay" class="popup-overlay" aria-hidden="true"></div>
-    <!-- Notes Popup -->
-    <div id="popupForm" class="popup-form" role="dialog" aria-hidden="true" aria-modal="true">
-      <h3 id="popupTitle">Add Note</h3>
-      <form id="popupGenericForm">
-        <label for="popupNoteTitle">Title</label>
-        <input id="popupNoteTitle" type="text" placeholder="Purpose of meeting (optional)" />
-        <label for="popupNoteText">Note</label>
-        <textarea id="popupNoteText" rows="5" placeholder="Enter notes..." required></textarea>
-        <div class="popup-actions">
-          <button type="submit" id="popupSubmit" class="popup-btn">Save</button>
-          <button type="button" id="popupCancel" class="popup-btn secondary">Cancel</button>
-        </div>
-      </form>
-    </div>
-    <!-- Call Popup -->
-    <div id="popupCallForm" class="popup-form" role="dialog" aria-hidden="true" aria-modal="true">
-      <h3 id="popupCallTitle">Schedule Call</h3>
-      <form id="popupCallGenericForm">
-        <label for="popupCallDate">Date</label>
-        <input id="popupCallDate" type="date" required />
-        <label for="popupCallTime">Time</label>
-        <input id="popupCallTime" type="time" required />
-        <label for="popupCallAgenda">Agenda</label>
-        <textarea id="popupCallAgenda" rows="3" placeholder="Purpose of call..." required></textarea>
-        <!--  Priority field for call urgency -->
-        <label for="popupCallPriority">Priority</label>
-        <select id="popupCallPriority" required>
-          <option value="Low">Low</option>
-          <option value="Medium" selected>Medium</option>
-          <option value="High">High</option>
-        </select>
-        <div class="popup-actions">
-          <button type="submit" id="popupCallSubmit" class="popup-btn">Save</button>
-          <button type="button" id="popupCallCancel" class="popup-btn secondary">Cancel</button>
-        </div>
-      </form>
-    </div>
-    <script src="clients.js"></script>
-  </body>
+      
+      <!-- Scrollable Cards container -->
+      <div id="clientsList" class="clients-container" role="listbox" aria-label="Clients list"></div>
+    </aside>
+
+    <!-- Right Pane: Selected Client Detailed Interactive Sheet -->
+    <main id="clientDetails-container" class="clientDetails-main" aria-live="polite">
+      <!-- Default Placeholder Empty State when no client card is selected -->
+      <div class="details-empty-state">
+        <img src="assets/images/user-data.png" alt="CRM database graphic" />
+        <h3>No Client Selected</h3>
+        <p>Choose a client card from the left directory to view full profile, scheduled calls, meeting notes, and deal history.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Popup Screen Overlay Backdrop Backdrop -->
+  <div id="popupOverlay" class="popup-overlay" aria-hidden="true"></div>
+
+  <!-- Note Creation Modal Popup Popup -->
+  <div id="popupForm" class="popup-form" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="popupTitle">
+    <h3 id="popupTitle">Add Note</h3>
+    <form id="popupGenericForm" novalidate>
+      <label for="popupNoteTitle">Note Title</label>
+      <input id="popupNoteTitle" type="text" placeholder="Purpose of meeting (e.g. Intro Meeting)" />
+      
+      <label for="popupNoteText">Notes Details</label>
+      <textarea id="popupNoteText" rows="5" placeholder="Enter notes and customer updates..." required aria-required="true"></textarea>
+      
+      <div class="popup-actions">
+        <button type="submit" id="popupSubmit" class="popup-btn">Save Note</button>
+        <button type="button" class="popup-btn secondary close-popup-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Call Scheduling Modal Popup Popup -->
+  <div id="popupCallForm" class="popup-form" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="popupCallTitle">
+    <h3 id="popupCallTitle">Schedule Call</h3>
+    <form id="popupCallGenericForm" novalidate>
+      <label for="popupCallDate">Date</label>
+      <input id="popupCallDate" type="date" required aria-required="true" />
+      
+      <label for="popupCallTime">Time</label>
+      <input id="popupCallTime" type="time" required aria-required="true" />
+      
+      <label for="popupCallAgenda">Call Agenda</label>
+      <textarea id="popupCallAgenda" rows="3" placeholder="Enter call agenda and key topics..." required aria-required="true"></textarea>
+      
+      <label for="popupCallPriority">Call Urgency / Priority</label>
+      <select id="popupCallPriority" required aria-required="true">
+        <option value="Low">Low</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="High">High</option>
+      </select>
+      
+      <div class="popup-actions">
+        <button type="submit" id="popupCallSubmit" class="popup-btn">Save Event</button>
+        <button type="button" class="popup-btn secondary close-popup-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Load Module Scripts -->
+  <script type="module" src="js/clients.js"></script>
+</body>
 </html>

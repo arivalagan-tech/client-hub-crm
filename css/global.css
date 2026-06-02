@@ -1,0 +1,240 @@
+/**
+ * Client Hub CRM - Global CSS Variables and Design Tokens
+ */
+:root {
+  --font-primary: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Modern Slate & Indigo SaaS Palette */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #e0e7ff;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-light: #94a3b8;
+  --border-color: #e2e8f0;
+  
+  /* Status Colors */
+  --status-available-bg: #ecfdf5;
+  --status-available-text: #059669;
+  --status-busy-bg: #fff7ed;
+  --status-busy-text: #d97706;
+  --status-inactive-bg: #f1f5f9;
+  --status-inactive-text: #64748b;
+  
+  /* Priority Colors */
+  --priority-high: #ef4444;
+  --priority-medium: #f59e0b;
+  --priority-low: #10b981;
+  
+  /* Shadows and Borders */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.01);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Resetting Defaults */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Core Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-left img {
+  border-radius: var(--radius-sm);
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+.nav-links li, .nav-links a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.nav-links li:hover, .nav-links a:hover {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.nav-links .active, .nav-links li.Clients-style {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.avatar-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-light);
+  object-fit: cover;
+}
+
+/* Central Form Container (index.html) */
+.form-container {
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 32px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.form-container h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.client-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.client-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: -14px;
+}
+
+.client-form input[type="text"],
+.client-form input[type="email"],
+.client-form input[type="date"],
+.client-form input[type="time"],
+.client-form textarea,
+.form-select {
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.client-form input:focus,
+.client-form textarea:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+/* Date and Time Fields Grid */
+.date-time-container-main {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+.date-time-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.date-time-container .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.date-time-container .field:last-child {
+  grid-column: span 2;
+}
+
+/* Standard Buttons */
+.save-btn {
+  align-self: flex-end;
+  padding: 12px 28px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+  transition: all var(--transition-fast);
+  margin-top: 10px;
+}
+
+.save-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px -1px rgba(79, 70, 229, 0.3);
+}
+
+.save-btn:active {
+  transform: translateY(0);
+}
