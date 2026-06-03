@@ -7,7 +7,7 @@ Built with a modular architecture, responsive design principles, and browser-nat
 ---
 
 ## 🌐 Live Demo & Repository
-- **Live Demo**: [client-hub-crm-six.vercel.app/](https://client-hub-crm-wixy.vercel.app/)
+- **Live Demo**: [client-hub-crm-wixy.vercel.app](https://client-hub-crm-wixy.vercel.app/)
 - **GitHub Repository**: [arivalagan-tech/client-hub-crm](https://github.com/arivalagan-tech/client-hub-crm)
 - **Tech Stack**: Pure HTML5, Vanilla CSS3 (Custom Variables), Native ES6 JavaScript, LocalStorage API.
 
