@@ -1,8 +1,8 @@
-# 🚀 Client Hub CRM (SaaS Refactored)
+# 🚀 Client Hub CRM (SaaS)
 
 A modern, high-fidelity SaaS-based Client Relationship Management (CRM) platform designed to streamline client interactions, sales workflows, meeting logs, and deal tracking through a highly responsive, pure HTML/CSS/Vanilla JavaScript front-end. 
 
-Built with a modular architecture, responsive design principles, and browser-native APIs to create a scalable CRM application suitable for real-world workflows and portfolio showcase.
+Built with a modular architecture, responsive design principles, and browser-native APIs to create a scalable CRM application suitable for real-world workflows.
 
 ---
 
