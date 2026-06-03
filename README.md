@@ -7,7 +7,7 @@ Built using modular architectural patterns and native APIs to deliver a recruite
 ---
 
 ## 🌐 Live Demo & Repository
-- **Live Demo**: [client-hub-crm-six.vercel.app/](https://client-hub-crm-six.vercel.app/)
+- **Live Demo**: [client-hub-crm-six.vercel.app/](https://client-hub-crm-wixy.vercel.app/)
 - **GitHub Repository**: [arivalagan-tech/client-hub-crm](https://github.com/arivalagan-tech/client-hub-crm)
 - **Tech Stack**: Pure HTML5, Vanilla CSS3 (Custom Variables), Native ES6 JavaScript, LocalStorage API.
 
